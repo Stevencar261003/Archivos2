@@ -2,36 +2,35 @@
 
 int main(){
 
-    FILE *archivo=NULL;
-    char buffer[100];
-    double pi;
+    FILE *arc=NULL;
+    FILE *arc2=NULL;
+    int num;
 
-    archivo=fopen("archivo.txt","r+");
+    arc=fopen("vector.txt","r");
+    arc2=fopen("vector2.txt","w");
+
     
-    if (archivo==NULL){
-        printf("No se puede abrir el archivo");
+    if (arc==NULL){
+        printf("No se logra abrir el complemento");
         return -1;
     }
 
-    fgets(buffer,100,archivo);
-    printf("la primera línea es %s",buffer);
+    for (int i=0; i<100; i++){
+        fprintf(arc,"%d\n",i);
 
-    fgets(buffer,100,archivo);
-    printf("la segunda línea es %s",buffer);
-
-    fgets(buffer,100,archivo);
-    printf("la tercera línea es %s",buffer);
-
-    fscanf(archivo, "%lf", &pi);
-    printf("el número en la cuarta línea es %lf",pi);
-
-    fprintf(archivo,"\n");
-
-    fputs("se agrega una quinta línea",archivo);
- 
-
-    fclose(archivo);
+    }
+    while (!feof (arc)){
+        fscanf(arc,"%d", &num);
 
 
+    if(num%3==0){
+        fprintf(archivo,"modulo de 3");
+    }
+    else{
+        fprintf(arc2,"%d\n",num);
+    }
+    }
+    fclose(arc);
+    fclose(arc2);
     return 0;
 }
